@@ -1,84 +1,86 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
 <head>
-  <meta charset="UTF-8">
-  <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-  <title>Painel Administrativo &mdash; TaLice</title>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
+    <title>Painel Administrativo &mdash; TaLice</title>
 
-  <!-- General CSS Files -->
-  <link rel="stylesheet" href="{{ asset('backend/assets/modules/bootstrap/css/bootstrap.min.css') }}">
-  <link rel="stylesheet" href="{{ asset('backend/assets/modules/fontawesome/css/all.min.css') }}">
+    <!-- General CSS Files -->
+    <link rel="stylesheet" href="{{ asset('backend/assets/modules/bootstrap/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('backend/assets/modules/fontawesome/css/all.min.css') }}">
 
-  <!-- CSS Libraries -->
-  <link rel="stylesheet" href="{{ asset('backend/assets/modules/jqvmap/dist/jqvmap.min.css') }}">
-  <link rel="stylesheet" href="{{ asset('backend/assets/modules/weather-icon/css/weather-icons.min.css') }}">
-  <link rel="stylesheet" href="{{ asset('backend/assets/modules/weather-icon/css/weather-icons-wind.min.css') }}">
-  <link rel="stylesheet" href="{{ asset('backend/assets/modules/summernote/summernote-bs4.css') }}">
+    <!-- CSS Libraries -->
+    <link rel="stylesheet" href="{{ asset('backend/assets/modules/jqvmap/dist/jqvmap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('backend/assets/modules/weather-icon/css/weather-icons.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('backend/assets/modules/weather-icon/css/weather-icons-wind.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('backend/assets/modules/summernote/summernote-bs4.css') }}">
 
-  <!-- Template CSS -->
-  <link rel="stylesheet" href="{{ asset('backend/assets/css/style.css') }}">
-  <link rel="stylesheet" href="{{ asset('backend/assets/css/components.css') }}">
-<!-- Start GA -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-94034622-3"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <!-- Template CSS -->
+    <link rel="stylesheet" href="{{ asset('backend/assets/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('backend/assets/css/components.css') }}">
+    <!-- Start GA -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-94034622-3"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
 
-  gtag('config', 'UA-94034622-3');
-</script>
-<!-- /END GA --></head>
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-94034622-3');
+    </script>
+    <!-- /END GA -->
+</head>
 
 <body>
-  <div id="app">
-    <div class="main-wrapper main-wrapper-1">
-      <div class="navbar-bg"></div>
-        <!-- START NAVBAR @EdilsonTarcio -->
+    <div id="app">
+        <div class="main-wrapper main-wrapper-1">
+            <div class="navbar-bg"></div>
+            <!-- START NAVBAR @EdilsonTarcio -->
             @include('admin.layouts.navbar')
-        <!-- END NAVBAR @EdilsonTarcio  -->
+            <!-- END NAVBAR @EdilsonTarcio  -->
 
-        <!-- START SIDERBAR @EdilsonTarcio  -->
+            <!-- START SIDERBAR @EdilsonTarcio  -->
             @include('admin.layouts.sidebar')
-        <!-- END SIDERBAR @EdilsonTarcio  -->
+            <!-- END SIDERBAR @EdilsonTarcio  -->
 
-      <div class="main-content"> <!-- START MAIN CONTENT @EdilsonTarcio  -->
-        @yield('content')
-      </div> <!-- END MAIN CONTENT @EdilsonTarcio  -->
+            <!-- START MAIN CONTENT @EdilsonTarcio  -->
+            <div class="main-content">
+                @yield('content')
+            </div>
+            <!-- END MAIN CONTENT @EdilsonTarcio  -->
 
-      <footer class="main-footer"> <!-- START FOOTER @EdilsonTarcio  -->
-        <div class="footer-left">
-          Copyright &copy; {{ date('Y') }} <div class="bullet"></div> Desenvolvido <a href="https://github.com/EdilsonTarcio/">Edilson Tarcio Versão</a> | 1.0
+            <!-- START FOOTER @EdilsonTarcio  -->
+            @include('admin.layouts.footer')
+            <!-- END FOOTER @EdilsonTarcio  -->
         </div>
-        <div class="footer-right">
-
-        </div>
-      </footer> <!-- END FOOTER @EdilsonTarcio  -->
-
     </div>
-  </div>
 
-  <!-- General JS Scripts -->
-  <script src="{{ asset('backend/assets/modules/jquery.min.js') }}"></script>
-  <script src="{{ asset('backend/assets/modules/popper.js') }}"></script>
-  <script src="{{ asset('backend/assets/modules/tooltip.js') }}"></script>
-  <script src="{{ asset('backend/assets/modules/bootstrap/js/bootstrap.min.js') }}"></script>
-  <script src="{{ asset('backend/assets/modules/nicescroll/jquery.nicescroll.min.js') }}"></script>
-  <script src="{{ asset('backend/assets/modules/moment.min.js') }}"></script>
-  <script src="{{ asset('backend/assets/js/stisla.js') }}"></script>
+    <!-- General JS Scripts -->
+    <script src="{{ asset('backend/assets/modules/jquery.min.js') }}"></script>
+    <script src="{{ asset('backend/assets/modules/popper.js') }}"></script>
+    <script src="{{ asset('backend/assets/modules/tooltip.js') }}"></script>
+    <script src="{{ asset('backend/assets/modules/bootstrap/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('backend/assets/modules/nicescroll/jquery.nicescroll.min.js') }}"></script>
+    <script src="{{ asset('backend/assets/modules/moment.min.js') }}"></script>
+    <script src="{{ asset('backend/assets/js/stisla.js') }}"></script>
 
-  <!-- JS Libraies -->
-  <script src="{{ asset('backend/assets/modules/simple-weather/jquery.simpleWeather.min.js') }}"></script>
-  <script src="{{ asset('backend/assets/modules/chart.min.js') }}"></script>
-  <script src="{{ asset('backend/assets/modules/jqvmap/dist/jquery.vmap.min.js') }}"></script>
-  <script src="{{ asset('backend/assets/modules/jqvmap/dist/maps/jquery.vmap.world.js') }}"></script>
-  <script src="{{ asset('backend/assets/modules/summernote/summernote-bs4.js') }}"></script>
-  <script src="{{ asset('backend/assets/modules/chocolat/dist/js/jquery.chocolat.min.js') }}"></script>
+    <!-- JS Libraies -->
+    <script src="{{ asset('backend/assets/modules/simple-weather/jquery.simpleWeather.min.js') }}"></script>
+    <script src="{{ asset('backend/assets/modules/chart.min.js') }}"></script>
+    <script src="{{ asset('backend/assets/modules/jqvmap/dist/jquery.vmap.min.js') }}"></script>
+    <script src="{{ asset('backend/assets/modules/jqvmap/dist/maps/jquery.vmap.world.js') }}"></script>
+    <script src="{{ asset('backend/assets/modules/summernote/summernote-bs4.js') }}"></script>
+    <script src="{{ asset('backend/assets/modules/chocolat/dist/js/jquery.chocolat.min.js') }}"></script>
 
-  <!-- Page Specific JS File -->
-  <script src="{{ asset('backend/assets/js/page/index-0.js') }}"></script>
+    <!-- Page Specific JS File -->
+    <script src="{{ asset('backend/assets/js/page/index-0.js') }}"></script>
 
-  <!-- Template JS File -->
-  <script src="{{ asset('backend/assets/js/scripts.js') }}"></script>
-  <script src="{{ asset('backend/assets/js/custom.js') }}"></script>
+    <!-- Template JS File -->
+    <script src="{{ asset('backend/assets/js/scripts.js') }}"></script>
+    <script src="{{ asset('backend/assets/js/custom.js') }}"></script>
 </body>
+
 </html>
