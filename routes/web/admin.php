@@ -1,7 +1,15 @@
 <?php
 use App\Http\Controllers\Backend\AdminController;
+use App\Http\Controllers\Backend\ProfileController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('admin/dashboard', [AdminController::class, 'dashboard'])
-->middleware(['auth', 'admin'])
-->name('dashboard.admin');
+Route::controller(AdminController::class)->group(function (){
+    Route::get('admin/dashboard', 'dashboard')->middleware(['auth', 'admin'])->name('dashboard.admin');
+    Route::get('admin/login', 'login')->name('login.admin');
+    Route::get('admin/forgout-password', 'forgout')->name('forgout.admin');
+});
+
+Route::controller(ProfileController::class)->group(function (){
+    Route::get('admin/profile', 'index')->name('profile.admin');
+    Route::post('admin/profile/update', 'update')->name('profile.admin.update');
+});
