@@ -28,7 +28,16 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(route('dashboard', absolute: false));
+        if($request->user()->role === 'admin'){
+            return redirect()->intended(route('dashboard.admin'));
+        }elseif($request->user()->role === 'seller'){
+            return redirect()->intended(route('dashboard.seller'));
+        }elseif($request->user()->role === 'user'){
+            return redirect()->intended(route('dashboard'));
+        }else{
+            return redirect('login')->with('error', 'Login não encontrado!');
+        }
+        return redirect()->intended(route('dashboard'));
     }
 
     /**

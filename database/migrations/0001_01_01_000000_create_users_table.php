@@ -14,6 +14,12 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('username');
+            $table->text('image')->nullable();
+            $table->string('phone')->nullable();
+            //O "enum" método cria uma "ENUM" coluna equivalente com os valores válidos fornecidos
+            $table->enum('role', ['admin', 'seller', 'analyst', 'manager', 'assistant', 'user'])->default('user');
+            $table->enum('status', ['active', 'inactive'])->default('active');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
