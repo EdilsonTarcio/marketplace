@@ -10,6 +10,6 @@ Route::controller(AdminController::class)->group(function (){
 });
 
 Route::controller(ProfileController::class)->group(function (){
-    Route::get('admin/profile', 'index')->name('profile.admin');
-    Route::post('admin/profile/update', 'update')->name('profile.admin.update');
+    Route::get('admin/profile', 'index')->middleware(['auth', 'admin'])->name('profile.admin');
+    Route::post('admin/profile/update', 'update')->middleware(['auth', 'admin'])->name('profile.admin.update');
 });
