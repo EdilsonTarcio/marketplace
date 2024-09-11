@@ -141,8 +141,11 @@
         </li>
         <li class="dropdown"><a href="#" data-toggle="dropdown"
                 class="nav-link dropdown-toggle nav-link-lg nav-link-user">
-                <img alt="image" src="{{ asset('backend/assets/img/avatar/avatar-1.png') }}"
-                    class="rounded-circle mr-1">
+                @if (Auth::user()->image == null)
+                    <img src="{{ asset('uploads/imageProfile/padrao.png') }}" alt="{{ Auth::user()->name }}" class="img-fluid rounded-circle mr-1" style="width:  80px; height:auto; object-fit:cover;">
+                @else
+                    <img src="{{Auth::user()->image}}" alt="{{ Auth::user()->name }}" class="img-fluid" style="border-radius:50%">
+                @endif
                 <div class="d-sm-none d-lg-inline-block">Olá, {{ Auth::user()->name }}</div>
             </a>
             <div class="dropdown-menu dropdown-menu-right">
