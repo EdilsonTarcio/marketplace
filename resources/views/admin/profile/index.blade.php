@@ -12,6 +12,7 @@
         <div class="section-body">
             @include('components.alert')
             <div class="row mt-sm-4">
+                {{-- Bloco 1 --}}
                 <div class="col-12 col-md-12 col-lg-7">
                     <div class="card">
                         {{-- Sem o atributo enctype="multipart/form-data" não enviao arquivos --}}
@@ -46,6 +47,43 @@
                                         <label>E-mail</label>
                                         <input type="email" class="form-control" name="email"
                                             value="{{ Auth::user()->email }}" required="">
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="card-footer text-right">
+                                <button type="submit" class="btn btn-primary">Atualizar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                {{-- Bloco 2 --}}
+                <div class="col-12 col-md-12 col-lg-7">
+                    <div class="card">
+                        {{-- Sem o atributo enctype="multipart/form-data" não enviao arquivos --}}
+                        <form action="{{ route('profile.admin.password.update') }}" method="post" class="needs-validation"
+                            novalidate="" enctype="multipart/form-data">
+                            @csrf
+                            <div class="card-header">
+                                <h4>Atualizar Senha </h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+
+                                    <div class="form-group col-12">
+                                        <label>Senha atual</label>
+                                        <input type="password" class="form-control" name="current_password" required="">
+                                    </div>
+
+                                    <div class="form-group col-md-6 col-12">
+                                        <label>Nova Senha</label>
+                                        <input type="password" class="form-control" name="password" required="">
+                                    </div>
+
+                                    <div class="form-group col-md-6 col-12">
+                                        <label>Confirme a senha</label>
+                                        <input type="password" class="form-control" name="password_confirmation" required="">
                                     </div>
 
                                 </div>
