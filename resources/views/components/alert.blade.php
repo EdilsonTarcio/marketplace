@@ -14,7 +14,7 @@
             <button class="close" data-dismiss="alert">
                 <span>&times;</span>
             </button>
-            {{ session('success') }}
+            <strong>{{ session('success') }}</strong>
         </div>
     </div>
 @endif
