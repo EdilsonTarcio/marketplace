@@ -16,6 +16,12 @@
     <link rel="stylesheet" href="{{ asset('backend/assets/modules/weather-icon/css/weather-icons-wind.min.css') }}">
     <link rel="stylesheet" href="{{ asset('backend/assets/modules/summernote/summernote-bs4.css') }}">
 
+    <!-- CDN CSS Datatable -->
+    <link rel="stylesheet" href="//cdn.datatables.net/2.1.6/css/dataTables.dataTables.min.css">
+
+    <!-- CDN CSS Datatable -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+
     <!-- Template CSS -->
     <link rel="stylesheet" href="{{ asset('backend/assets/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('backend/assets/css/components.css') }}">
@@ -75,12 +81,18 @@
     <script src="{{ asset('backend/assets/modules/summernote/summernote-bs4.js') }}"></script>
     <script src="{{ asset('backend/assets/modules/chocolat/dist/js/jquery.chocolat.min.js') }}"></script>
 
+    <!-- CDN JS Datatable -->
+    <script src="//cdn.datatables.net/2.1.6/js/dataTables.min.js"></script>
+    <!-- CDN JS Datatable Bootstrap5-->
+    <script src="//cdn.datatables.net/2.1.6/js/dataTables.bootstrap5.js"></script>
+
     <!-- Page Specific JS File -->
     <script src="{{ asset('backend/assets/js/page/index-0.js') }}"></script>
 
     <!-- Template JS File -->
-    <script src="{{ asset('backend/assets/js/scripts.js') }}"></script>
+    <script src="{{ asset('backend/assets/js/scripts.js') }}"></>
     <script src="{{ asset('backend/assets/js/custom.js') }}"></script>
+    @stack('scripts')
 </body>
 
 </html>
