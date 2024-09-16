@@ -31,6 +31,11 @@ class SliderDataTable extends DataTable
                 //adiciona o elemento com o asset para renderizar a imagem pelo diretório vindo do banco
                 return $img = "<img src ='".asset($query->banner)."' style='width:80%; height:auto'>";
             })
+            ->addColumn('status', function($query){
+                //adiciona o elemento com o asset para renderizar a imagem pelo diretório vindo do banco
+                $ativo = $query->status;
+                return $ativo == true ? 'Ativo' : 'Inativo';
+            })
             ->rawColumns(['banner', 'action'])
             ->setRowId('id');
     }
@@ -49,12 +54,15 @@ class SliderDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-                    ->setTableId('slider-table')
+                    //->setTableId('slider-table')
                     ->columns($this->getColumns())
                     ->minifiedAjax()
                     //->dom('Bfrtip')
                     ->orderBy(1)
                     ->selectStyleSingle()
+                    ->language([
+                        'url' => asset('backend/assets/js/datatable/pt-BR.json'),
+                    ])
                     ->buttons([
                         Button::make('excel'),
                         Button::make('csv'),
@@ -71,14 +79,17 @@ class SliderDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-            Column::make('id'),
-            Column::make('banner'),
-            Column::make('title_one'),
+            Column::make('id')->addClass('text-center')->title('Código'),
+            Column::make('banner')->title('Imagem'),
+            Column::make('title_one')->title('Titulo Um'),
+            Column::make('title_two')->title('Titulo Dois'),
+            Column::make('status')->addClass('text-center')->title('Estatos'),
             Column::computed('action')
                   ->exportable(false)
                   ->printable(false)
                   ->width(60)
-                  ->addClass('text-center'),
+                  ->addClass('text-center')
+                  ->title('Ações'),
         ];
     }
 
