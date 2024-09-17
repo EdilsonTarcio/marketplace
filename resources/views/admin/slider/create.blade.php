@@ -27,17 +27,17 @@
                                 @csrf
                                 <div class="form-group">
                                     <label for="image">Imagem(1300x500px)</label>
-                                    <input type="file" name="banner" id="image" class="form-control">
+                                    <input type="file" name="banner" id="image" class="form-control" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="">Titulo 1</label>
                                     <input type="text" name="title_one" class="form-control"
-                                        value="{{ old('title_one') }}">
+                                        value="{{ old('title_one') }}" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="">Titulo 2</label>
                                     <input type="text" name="title_two" class="form-control"
-                                        value="{{ old('title_two') }}">
+                                        value="{{ old('title_two') }}" required>
                                 </div>
                                 <div class="row">
                                     <div class="form-group col-6">
@@ -55,7 +55,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="">Link</label>
-                                    <input type="url" name="link" class="form-control" value="{{ old('link') }}">
+                                    <input type="url" name="link" class="form-control" value="{{ old('link') }}" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="">Ordem</label>
