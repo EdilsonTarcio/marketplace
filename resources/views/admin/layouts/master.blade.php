@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Painel Administrativo &mdash; TaLice</title>
 
     <!-- General CSS Files -->
@@ -86,12 +87,61 @@
     <!-- CDN JS Datatable Bootstrap5-->
     <script src="//cdn.datatables.net/2.1.6/js/dataTables.bootstrap5.js"></script>
 
+    <!-- CDN JS Sweet Alert 2-->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <!-- Page Specific JS File -->
     <script src="{{ asset('backend/assets/js/page/index-0.js') }}"></script>
 
     <!-- Template JS File -->
-    <script src="{{ asset('backend/assets/js/scripts.js') }}"></>
-    <script src="{{ asset('backend/assets/js/custom.js') }}"></script>
+    <script src="{{ asset('backend/assets/js/scripts.js') }}"></script>
+
+    <script src = "{{ asset('backend/assets/js/custom.js') }}" ></script>
+    <script>
+        $(document).ready(function() {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $('body').on('click', '.delete-item', function(event) {
+                event.preventDefault();
+                let deleteUrl = $(this).attr('href');
+                Swal.fire({
+                    title: "Tem Certeza?",
+                    text: "Você não podera reverter!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Sim, exclua-o!"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+
+                        $.ajax({
+                            url: deleteUrl,
+                            type: 'DELETE',
+                            success: function(response) {
+
+                                if (response.status == 'success') {
+                                    Swal.fire({
+                                        title: "Excluído!",
+                                        text: "Seu Slide foi excluido com sucesso.",
+                                        icon: "success"
+                                    });
+
+                                    window.location.reload();
+                                }
+                            },
+                            error: function(xhr, status, error) {
+                                console.log(error);
+                            }
+                        })
+                    }
+                });
+            })
+        })
+    </script>
     @stack('scripts')
 </body>
 
