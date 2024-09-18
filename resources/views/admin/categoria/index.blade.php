@@ -3,10 +3,10 @@
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h1>Slide Destaque Site</h1>
+            <h1>Categorias</h1>
             <div class="section-header-breadcrumb">
                 <div class="breadcrumb-item"><a href="{{ route('dashboard.admin') }}">Painel</a></div>
-                <div class="breadcrumb-item active">Slides</div>
+                <div class="breadcrumb-item active">Categoria</div>
             </div>
         </div>
 
@@ -15,9 +15,9 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>Slide Destaque</h4>
+                            <h4>Categorias do Site</h4>
                             <div class="card-header-action">
-                                <a href="{{ route('slider.create') }}" class="btn btn-primary"><i class="fas fa-plus"></i> Novo</a>
+                                <a href="{{ route('categoria.create') }}" class="btn btn-primary"><i class="fas fa-plus"></i> Novo</a>
                             </div>
                         </div>
                         <div class="card-body">
