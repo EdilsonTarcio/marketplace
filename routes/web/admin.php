@@ -1,5 +1,6 @@
 <?php
 use App\Http\Controllers\Backend\AdminController;
+use App\Http\Controllers\Backend\CategoriaController;
 use App\Http\Controllers\Backend\ProfileController;
 use App\Http\Controllers\Backend\SlideController;
 use Illuminate\Support\Facades\Route;
@@ -17,3 +18,5 @@ Route::controller(ProfileController::class)->group(function (){
 });
 
 Route::resource('admin/slider', SlideController::class)->middleware(['auth', 'admin']);
+
+Route::resource('admin/categoria', CategoriaController::class)->middleware(['auth', 'admin']);
