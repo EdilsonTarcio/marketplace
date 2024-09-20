@@ -21,16 +21,20 @@ class CategoriaDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
             ->addColumn('action', function($query){
-                $edit = "<a href='".route('slider.edit', $query->id)."' class='btn btn-primary mb-2'><i class='far fa-edit'></i></a>";
-                $delete = "<a href='".route('slider.destroy', $query->id)."' class='btn btn-danger delete-item'><i class='far fa-trash-alt'></i></a>";
+                $edit = "<a href='".route('categoria.edit', $query->id)."' class='btn btn-primary mb-2'><i class='far fa-edit'></i></a>";
+                $delete = "<a href='".route('categoria.destroy', $query->id)."' class='btn btn-danger delete-item'><i class='far fa-trash-alt'></i></a>";
+                                                                                            //class delete-item responsavél para abrir o modal
                 return $edit.$delete;
             })
             ->addColumn('status', function($query){
-                //adiciona o elemento com o asset para renderizar a imagem pelo diretório vindo do banco
                 $ativo = $query->status;
                 return $ativo == true ? "<div class='badge badge-success'>Ativo</div>" : "<div class='badge badge-danger'>Inativo</div>";
             })
-            ->rawColumns(['icon', 'action', 'status'])
+            ->addColumn('icon', function($query){
+                $icon = "<i class='".$query->icon."' style='font-size:25px;'></i>";
+                return $icon;
+            })
+            ->rawColumns(['icon', 'action', 'name', 'status'])
             ->setRowId('id');
     }
 
@@ -76,6 +80,8 @@ class CategoriaDataTable extends DataTable
 
             Column::make('id')->title('Código'),
             Column::make('icon')->title('Icone'),
+            Column::make('name')->title('Nome'),
+            Column::make('slug')->title('Descrição'),
             Column::make('status')->title('Situação'),
             Column::computed('action')->title('Acões')
                   ->exportable(false)

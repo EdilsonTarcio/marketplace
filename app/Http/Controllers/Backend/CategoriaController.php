@@ -24,7 +24,7 @@ class CategoriaController extends Controller
     {
         //remoção do token do request
         $categoria = $request->except('_token');
-        
+
         //upload da imagem
         $categoria['slug'] = Str::slug($categoria['name']);
 
@@ -40,16 +40,35 @@ class CategoriaController extends Controller
 
     public function edit(string $id)
     {
-        //
+        $categoria = Categoria::find($id);
+        return view('admin.categoria.edit', compact('categoria'));
     }
 
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'icon' => ['required', 'not_in:empty'],
+            'name' => ['required', 'max:200','unique:categorias,name,'.$id], //obrigatório o id para permitir atualizar
+            'status' => ['required'],
+        ]);
+
+        $categoria = Categoria::find($id);
+
+        $categoria->update([
+            'icone' => $request->icon,
+            'name' => $request->name,
+            'status' => $request->status,
+            'slug' => STR::slug($request->name),
+            'status' => $request->status
+          ]);
+
+        return redirect()->route('categoria.index')->with('success', 'Categoria Atualizada!');
     }
 
     public function destroy(string $id)
     {
-        //
+        $categoria = Categoria::find($id);
+        $categoria->delete();
+        return response(['status' =>'success','message' => 'Excluido com sucesso']);
     }
 }
