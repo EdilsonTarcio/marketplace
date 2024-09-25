@@ -27,8 +27,18 @@ class CategoriaDataTable extends DataTable
                 return $edit.$delete;
             })
             ->addColumn('status', function($query){
-                $ativo = $query->status;
-                return $ativo == true ? "<div class='badge badge-success'>Ativo</div>" : "<div class='badge badge-danger'>Inativo</div>";
+                if($query->status == 1){
+                    $botao = '<label class="custom-switch mt-2">
+                        <input type="checkbox" checked name="custom-switch-checkbox" data-id="'.$query->id.'" class="custom-switch-input atualiza-status">
+                        <span class="custom-switch-indicator"></span>
+                        </label>';
+                }else{
+                    $botao = '<label class="custom-switch mt-2">
+                        <input type="checkbox"  name="custom-switch-checkbox" data-id="'.$query->id.'" class="custom-switch-input atualiza-status">
+                        <span class="custom-switch-indicator"></span>
+                        </label>';
+                }
+                return $botao;
             })
             ->addColumn('icon', function($query){
                 $icon = "<i class='".$query->icon."' style='font-size:25px;'></i>";
@@ -82,7 +92,7 @@ class CategoriaDataTable extends DataTable
             Column::make('icon')->title('Icone'),
             Column::make('name')->title('Nome'),
             Column::make('slug')->title('Descrição'),
-            Column::make('status')->title('Situação'),
+            Column::make('status')->addClass('text-center')->title('Situação'),
             Column::computed('action')->title('Acões')
                   ->exportable(false)
                   ->printable(false)
