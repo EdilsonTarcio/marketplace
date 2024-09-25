@@ -32,4 +32,27 @@
 @endsection
 @push('scripts')
 {{ $dataTable->scripts(attributes: ['type' => 'module']) }}
+<script>
+    $(document).ready(function(){
+        $('body').on('click', '.atualiza-status', function(){
+            let checando = $(this).is(':checked');
+            let id = $(this).data('id');
+
+            $.ajax({
+                url: "{{ route('atualiza.status.category') }}",
+                method: 'PUT',
+                data: {
+                    status: checando,
+                    id: id
+                },
+                success: function(data){
+                    
+                },
+                error: function(xhr, status, error){
+                    console.log(error);
+                }
+            });
+        });
+    });
+</script>
 @endpush

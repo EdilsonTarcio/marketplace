@@ -71,4 +71,13 @@ class CategoriaController extends Controller
         $categoria->delete();
         return response(['status' =>'success','message' => 'Excluido com sucesso']);
     }
+
+    public function atualizaStatus(Request $request)
+    {
+        $categoria = Categoria::find($request->id);
+        $categoria->status = $request->status == 'true' ? 1 : 0;
+        $categoria->save();
+
+        return response(['status' => 'success','message' => 'Status Atualizado']);
+    }
 }

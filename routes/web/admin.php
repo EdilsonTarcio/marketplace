@@ -19,4 +19,5 @@ Route::controller(ProfileController::class)->group(function (){
 
 Route::resource('admin/slider', SlideController::class)->middleware(['auth', 'admin']);
 
+Route::put('atualiza-status', [CategoriaController::class, 'atualizaStatus'])->name('atualiza.status.category');
 Route::resource('admin/categoria', CategoriaController::class)->middleware(['auth', 'admin']);
