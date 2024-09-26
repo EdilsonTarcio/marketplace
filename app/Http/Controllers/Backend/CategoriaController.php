@@ -6,6 +6,7 @@ use App\DataTables\CategoriaDataTable;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CategoriaRequest;
 use App\Models\Categoria;
+use App\Models\SubCategoria;
 use Illuminate\Http\Request;
 use Str;
 class CategoriaController extends Controller
@@ -23,13 +24,13 @@ class CategoriaController extends Controller
     public function store(CategoriaRequest $request)
     {
         //remoção do token do request
-        $categoria = $request->except('_token');
+        $subCategoria = $request->except('_token');
 
         //upload da imagem
-        $categoria['slug'] = Str::slug($categoria['name']);
+        $subCategoria['slug'] = Str::slug($subCategoria['name']);
 
         //salvando slider
-        Categoria::create($categoria);
+        SubCategoria::create($subCategoria);
         return redirect()->back()->with('success', 'Categoria Criada!');
     }
 
@@ -55,7 +56,7 @@ class CategoriaController extends Controller
         $categoria = Categoria::find($id);
 
         $categoria->update([
-            'icone' => $request->icon,
+            'icon' => $request->icon,
             'name' => $request->name,
             'status' => $request->status,
             'slug' => STR::slug($request->name),
