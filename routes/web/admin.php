@@ -3,6 +3,7 @@ use App\Http\Controllers\Backend\AdminController;
 use App\Http\Controllers\Backend\CategoriaController;
 use App\Http\Controllers\Backend\ProfileController;
 use App\Http\Controllers\Backend\SlideController;
+use App\Http\Controllers\Backend\SubCategoriaController;
 use Illuminate\Support\Facades\Route;
 
 Route::controller(AdminController::class)->group(function (){
@@ -19,5 +20,11 @@ Route::controller(ProfileController::class)->group(function (){
 
 Route::resource('admin/slider', SlideController::class)->middleware(['auth', 'admin']);
 
+//Rotas categorias principais
 Route::put('atualiza-status', [CategoriaController::class, 'atualizaStatus'])->name('atualiza.status.category');
 Route::resource('admin/categoria', CategoriaController::class)->middleware(['auth', 'admin']);
+
+//Rotas Sub Categorias
+Route::put('subcategoria/atualiza-status', [SubCategoriaController::class, 'atualizaStatus'])->name('atualiza.status.subcategory');
+Route::resource('admin/subcategoria', SubCategoriaController::class)->middleware(['auth', 'admin']);
+
