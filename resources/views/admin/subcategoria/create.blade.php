@@ -26,21 +26,12 @@
                             <form action="{{ route('subcategoria.store') }}" method="post" enctype="multipart/form-data">
                                 @csrf
                                 <div class="form-group">
-                                    <label>Selecione o Icone</label>
-                                    <div>
-                                        <button
-                                        style="text-align: left; width:100%; padding:15px; text-align: center"
-                                        class="btn btn-primary"
-                                        data-selected-class="btn-danger"
-                                        data-selected-class="btn-primary"
-                                        data-iconset="fontawesome5"
-                                        data-icon="fas fa-award"
-                                        role="iconpicker"
-                                        data-rows="5"
-                                        data-cols="7"
-                                        name="icon"
-                                        ></button>
-                                    </div>
+                                    <label for="">Categoria</label>
+                                    <select name="id_categoria" class="form-control">
+                                        @foreach ($categorias as $categoria )
+                                            <option value="{{ $categoria->id }}">{{ $categoria->name }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                                 <div class="row">
                                     <div class="form-group col-6">
