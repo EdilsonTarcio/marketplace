@@ -21,10 +21,13 @@ class SubCategoriaDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
             ->addColumn('action', function($query){
-                $edit = "<a href='".route('categoria.edit', $query->id)."' class='btn btn-primary mb-2'><i class='far fa-edit'></i></a>";
-                $delete = "<a href='".route('categoria.destroy', $query->id)."' class='btn btn-danger delete-item'><i class='far fa-trash-alt'></i></a>";
+                $edit = "<a href='".route('subcategoria.edit', $query->id)."' class='btn btn-primary mr-2'><i class='far fa-edit'></i></a>";
+                $delete = "<a href='".route('subcategoria.destroy', $query->id)."' class='btn btn-danger delete-item'><i class='far fa-trash-alt'></i></a>";
                                                                                             //class delete-item responsavél para abrir o modal
                 return $edit.$delete;
+            })
+            ->addColumn('categoria', function($query){
+                return  "<i class='".$query->categoria->icon."' style='font-size:25px;'></i>".'  '.$query->categoria->name;
             })
             ->addColumn('status', function($query){
                 if($query->status == 1){
@@ -40,11 +43,7 @@ class SubCategoriaDataTable extends DataTable
                 }
                 return $botao;
             })
-            ->addColumn('icon', function($query){
-                $icon = "<i class='".$query->icon."' style='font-size:25px;'></i>";
-                return $icon;
-            })
-            ->rawColumns(['icon', 'action', 'name', 'status'])
+            ->rawColumns(['categoria', 'action', 'name', 'status'])
             ->setRowId('id');
     }
 
@@ -89,14 +88,14 @@ class SubCategoriaDataTable extends DataTable
         return [
 
             Column::make('id')->title('Código'),
-            Column::make('icon')->title('Icone'),
-            Column::make('name')->title('Nome'),
+            Column::make('categoria')->title('Categoria'),
+            Column::make('name')->title('Nome Subcategoria'),
             Column::make('slug')->title('Descrição'),
             Column::make('status')->addClass('text-center')->title('Situação'),
             Column::computed('action')->title('Acões')
                   ->exportable(false)
                   ->printable(false)
-                  ->width(60)
+                  ->width(200)
                   ->addClass('text-center')
         ];
     }

@@ -21,7 +21,7 @@ class CategoriaDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
             ->addColumn('action', function($query){
-                $edit = "<a href='".route('categoria.edit', $query->id)."' class='btn btn-primary mb-2'><i class='far fa-edit'></i></a>";
+                $edit = "<a href='".route('categoria.edit', $query->id)."' class='btn btn-primary mr-2'><i class='far fa-edit'></i></a>";
                 $delete = "<a href='".route('categoria.destroy', $query->id)."' class='btn btn-danger delete-item'><i class='far fa-trash-alt'></i></a>";
                                                                                             //class delete-item responsavél para abrir o modal
                 return $edit.$delete;
@@ -96,7 +96,7 @@ class CategoriaDataTable extends DataTable
             Column::computed('action')->title('Acões')
                   ->exportable(false)
                   ->printable(false)
-                  ->width(60)
+                  ->width(200)
                   ->addClass('text-center')
         ];
     }
