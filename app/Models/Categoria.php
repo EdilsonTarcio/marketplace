@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\SubCategoria;
 
 class Categoria extends Model
 {
@@ -14,4 +15,6 @@ class Categoria extends Model
         'icon',
         'status'
     ];
+
+
 }
