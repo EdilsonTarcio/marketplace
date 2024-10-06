@@ -23,36 +23,29 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            <form action="{{ route('subcategoria.update', $categoria->id) }}" method="post" enctype="multipart/form-data">
+                            <form action="{{ route('subcategoria.update', $subCategoria->id) }}" method="post" enctype="multipart/form-data">
                                 @csrf
                                 @method('PUT')
-                                <div class="form-group">
-                                    <label>Selecione o Icone</label>
-                                    <div>
-                                        <button
-                                        style="text-align: left; width:100%; padding:15px; text-align: center"
-                                        class="btn btn-primary"
-                                        data-selected-class="btn-danger"
-                                        data-selected-class="btn-primary"
-                                        data-iconset="fontawesome5"
-                                        data-icon="{{ $categoria->icon }}"
-                                        role="iconpicker"
-                                        data-rows="5"
-                                        data-cols="7"
-                                        name="icon"
-                                        ></button>
-                                    </div>
-                                </div>
                                 <div class="row">
+                                    <div class="form-group">
+                                        <label for="">Categoria</label>
+                                        <select name="id_categoria" class="form-control">
+                                            @foreach ($categorias as $categoria )
+                                                <option value="{{ $categoria->id }}" {{ $subCategoria->id_categoria == $categoria->id?'selected':null }}>
+                                                    {{ $categoria->name }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
                                     <div class="form-group col-6">
-                                        <label for="">Titulo</label>
-                                        <input type="text" name="name" class="form-control" value="{{ old('name', $categoria->name) }}">
+                                        <label for="">Nome Subcategoria</label>
+                                        <input type="text" name="name" class="form-control" value="{{ old('name', $subCategoria->name) }}">
                                     </div>
                                     <div class="form-group col-6">
                                         <label for="">Status</label>
                                         <select name="status" class="form-control">
-                                            <option value="1" {{ $categoria->status == 1 ? 'selected' : null }} >Ativo</option>
-                                            <option value="0" {{ $categoria->status == 0 ? 'selected' : null }}>Inativo</option>
+                                            <option value="1" {{ $subCategoria->status == 1 ? 'selected' : null }} >Ativo</option>
+                                            <option value="0" {{ $subCategoria->status == 0 ? 'selected' : null }}>Inativo</option>
                                         </select>
                                     </div>
                                 </div>
