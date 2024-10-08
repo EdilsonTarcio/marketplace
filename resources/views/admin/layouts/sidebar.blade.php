@@ -8,21 +8,25 @@
         </div>
         <ul class="sidebar-menu">
             <li class="menu-header">Painel de Controle</li>
-            <li class="dropdown active">
+            <li class="dropdown {{ activesidebar(['slider.*']) }}">
                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Painel</span></a>
                 <ul class="dropdown-menu">
-                    <li class=active><a class="nav-link" href="index-0.html">Configurações</a></li>
-                    <li><a class="nav-link" href="{{ route('slider.index') }}">Slide destaque</a></li>
+                    <li><a class="nav-link" href="index-0.html">Configurações</a></li>
+                    <li class="{{ activesidebar(['slider.*']) }}"><a class="nav-link" href="{{ route('slider.index') }}">Slide destaque</a></li>
                 </ul>
             </li>
             <li class="menu-header">Starter</li>
-            <li class="dropdown">
+            <li class="dropdown {{ activesidebar([
+            'categoria.*',
+            'subcategoria.*',
+            'categoria-segmento.*'
+            ]) }}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i>
                     <span>Gerencie Categorias</span></a>
                 <ul class="dropdown-menu">
-                    <li><a class="nav-link" href="{{ route('categoria.index') }}">Categorias</a></li>
-                    <li><a class="nav-link" href="{{ route('subcategoria.index') }}">Subcategorias</a></li>
-                    <li><a class="nav-link" href="{{ route('categoria-segmento.index') }}">Segmento</a></li>
+                    <li class="{{ activesidebar(['categoria.*']) }}"><a class="nav-link" href="{{ route('categoria.index') }}">Categorias</a></li>
+                    <li class="{{ activesidebar(['subcategoria.*']) }}"><a class="nav-link" href="{{ route('subcategoria.index') }}">Subcategorias</a></li>
+                    <li class="{{ activesidebar(['categoria-segmento.*']) }}"><a class="nav-link" href="{{ route('categoria-segmento.index') }}">Segmento</a></li>
                 </ul>
             </li>
             <li>
