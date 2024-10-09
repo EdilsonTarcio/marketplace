@@ -66,7 +66,9 @@ class MarcaController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $marca = Marca::findOrFail($id);
+
+        return view('admin.marcas.edit', compact('marca'));
     }
 
     /**
@@ -74,7 +76,25 @@ class MarcaController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'logo' => ['image', 'max:2000'],
+            'name' => ['required','max:100', 'unique:marcas,name,'.$id],
+            'destacada' => ['required'],
+            'status' => ['required']
+        ]);
+
+        $marca = Marca::findOrFail($id);
+
+        $pastaLogo = $this->updateImage($request, 'logo', 'uploads', $marca->logo);
+
+        $marca->logo = empty(!$pastaLogo) ? $pastaLogo : $request->logo;
+        $marca->name = $request->name;
+        $marca->slug = Str::slug($request->name);
+        $marca->destacada = $request->destacada;
+        $marca->status = $request->status;
+        $marca->save();
+
+        return redirect()->route('marcas.index')->with('success', 'Marca atualizada com sucesso');
     }
 
     /**
@@ -82,7 +102,10 @@ class MarcaController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $marca = Marca::find($id);
+        $this->deleteImage($marca->logo);
+        $marca->delete();
+        return response(['status' =>'success','message' => 'Excluido com sucesso']);
     }
 
     public function atualizaStatus(Request $request)
@@ -90,7 +113,7 @@ class MarcaController extends Controller
         $atualizaStatus = Marca::find($request->id);
         $atualizaStatus->status = $request->status == 'true' ? 1 : 0;
         $atualizaStatus->save();
-        
+
         return response(['status' => 'success','message' => 'Status Atualizado']);
     }
 }
