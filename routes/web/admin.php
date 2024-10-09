@@ -2,6 +2,7 @@
 use App\Http\Controllers\Backend\AdminController;
 use App\Http\Controllers\Backend\CategoriaController;
 use App\Http\Controllers\Backend\CategoriaSegmentoController;
+use App\Http\Controllers\Backend\MarcaController;
 use App\Http\Controllers\Backend\ProfileController;
 use App\Http\Controllers\Backend\SlideController;
 use App\Http\Controllers\Backend\SubCategoriaController;
@@ -34,4 +35,7 @@ Route::put('categoria-segmento/atualiza-status', [CategoriaSegmentoController::c
 Route::resource('admin/categoria-segmento', CategoriaSegmentoController::class)->middleware(['auth', 'admin']);
 Route::get('get-subcategorias', [CategoriaSegmentoController::class, 'getSubcategorias'])->name('get-subcategorias');
 
+//Rotas de marcas
+Route::put('marcas/atualiza-status', [MarcaController::class, 'atualizaStatus'])->name('atualiza.status.marca');
+Route::resource('admin/marcas', MarcaController::class)->middleware(['auth', 'admin']);
 
