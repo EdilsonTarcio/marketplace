@@ -109,6 +109,6 @@ class CategoriaSegmentoDataTable extends DataTable
      */
     protected function filename(): string
     {
-        return 'Categoria_' . date('YmdHis');
+        return 'SegmentoCategoria_' . date('YmdHis');
     }
 }
