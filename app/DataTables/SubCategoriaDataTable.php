@@ -105,6 +105,6 @@ class SubCategoriaDataTable extends DataTable
      */
     protected function filename(): string
     {
-        return 'Categoria_' . date('YmdHis');
+        return 'Subcategoria_' . date('YmdHis');
     }
 }
