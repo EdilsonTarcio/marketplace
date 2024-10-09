@@ -3,11 +3,11 @@
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h1>Cadastro de Categoria</h1>
+            <h1>Cadastro de Marcas</h1>
             <div class="section-header-breadcrumb">
                 <div class="breadcrumb-item"><a href="{{ route('dashboard.admin') }}">Painel</a></div>
-                <div class="breadcrumb-item"><a href="{{ route('categoria.index') }}">Listar</a></div>
-                <div class="breadcrumb-item active">Cadastrar Categoria</div>
+                <div class="breadcrumb-item"><a href="{{ route('marcas.index') }}">Listar</a></div>
+                <div class="breadcrumb-item active">Cadastrar Marcas</div>
             </div>
         </div>
 
@@ -17,38 +17,32 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>Criar Categoria</h4>
+                            <h4>Criar Marca</h4>
                             <div class="card-header-action">
                                 <a href="#" class="btn btn-primary"> Ajuda?</a>
                             </div>
                         </div>
                         <div class="card-body">
-                            <form action="{{ route('categoria.store') }}" method="post" enctype="multipart/form-data">
+                            <form action="{{ route('marcas.store') }}" method="post" enctype="multipart/form-data">
                                 @csrf
-                                <div class="form-group">
-                                    <label>Selecione o Icone</label>
-                                    <div>
-                                        <button
-                                        style="text-align: left; width:100%; padding:15px; text-align: center"
-                                        class="btn btn-primary"
-                                        data-selected-class="btn-danger"
-                                        data-selected-class="btn-primary"
-                                        data-iconset="fontawesome5"
-                                        data-icon="fas fa-award"
-                                        role="iconpicker"
-                                        data-rows="5"
-                                        data-cols="7"
-                                        name="icon"
-                                        ></button>
-                                    </div>
-                                </div>
                                 <div class="row">
-                                    <div class="form-group col-6">
-                                        <label for="">Titulo</label>
-                                        <input type="text" name="name" class="form-control"
-                                            value="{{ old('titulo') }}">
+                                    <div class="form-group col-12">
+                                        <label for="">Logo (600x360 px)</label>
+                                        <input type="file" name="logo" id="image" class="form-control" required>
                                     </div>
                                     <div class="form-group col-6">
+                                        <label for="">Nome</label>
+                                        <input type="text" name="name" class="form-control"
+                                            value="{{ old('name') }}">
+                                    </div>
+                                    <div class="form-group col-3">
+                                        <label for="">Status</label>
+                                        <select name="destacada" class="form-control">
+                                            <option value="1">Sim</option>
+                                            <option value="0">Não</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-3">
                                         <label for="">Status</label>
                                         <select name="status" class="form-control">
                                             <option value="1">Ativo</option>

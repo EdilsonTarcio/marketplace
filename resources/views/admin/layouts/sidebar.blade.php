@@ -29,6 +29,15 @@
                     <li class="{{ activesidebar(['categoria-segmento.*']) }}"><a class="nav-link" href="{{ route('categoria-segmento.index') }}">Segmento</a></li>
                 </ul>
             </li>
+            <li class="dropdown {{ activesidebar([
+            'marcas.*'
+            ]) }}">
+                    <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i>
+                        <span>Gerencie Produtos</span></a>
+                    <ul class="dropdown-menu">
+                        <li class="{{ activesidebar(['marcas.*']) }}"><a class="nav-link" href="{{ route('marcas.index') }}">Marcas</a></li>
+                     </ul>
+                </li>
             <li>
                 <a class="nav-link" href="blank.html"><i class="far fa-square"></i> <span>Blank Page</span></a>
             </li>
