@@ -1,5 +1,6 @@
 <?php
 use App\Http\Controllers\Backend\AdminController;
+use App\Http\Controllers\Backend\AdminPerfilVendedorController;
 use App\Http\Controllers\Backend\CategoriaController;
 use App\Http\Controllers\Backend\CategoriaSegmentoController;
 use App\Http\Controllers\Backend\MarcaController;
@@ -39,3 +40,6 @@ Route::get('get-subcategorias', [CategoriaSegmentoController::class, 'getSubcate
 Route::put('marcas/atualiza-status', [MarcaController::class, 'atualizaStatus'])->name('atualiza.status.marca');
 Route::resource('admin/marcas', MarcaController::class)->middleware(['auth', 'admin']);
 
+//Rotas de Vendedores
+Route::put('vendedor/atualiza-status', [AdminPerfilVendedorController::class, 'atualizaStatus'])->name('atualiza.status.vendedor');
+Route::resource('admin/vendedor-perfil', AdminPerfilVendedorController::class)->middleware(['auth', 'admin']);
