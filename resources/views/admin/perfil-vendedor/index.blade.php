@@ -26,39 +26,46 @@
                             <form action="{{ route('vendedor-perfil.store') }}" method="post" enctype="multipart/form-data">
                                 @csrf
                                 <div class="form-group">
-                                    <label for="image">Imagem(1920x500px)</label>
-                                    <input type="file" name="banner" id="image" class="form-control" required>
+                                    <label for="image">Visualizar(1920x500px)</label>
+                                    <br>
+                                    <img src="{{ asset($perfil->banner) }}" style="width: 30%">
                                 </div>
+                                <div class="form-group">
+                                    <label for="image">Imagem(1920x500px)</label>
+                                <input type="file" name="banner" id="image" class="form-control">
+                                </div>
+
+
                                 <div class="form-group">
                                     <label for="">Fone/Whatsapp</label>
                                     <input type="text" name="fone" class="form-control"
-                                        value="{{ old('fone') }}" required>
+                                        value="{{ old('fone', $perfil->fone ) }}" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="">E-mail</label>
                                     <input type="text" name="email" class="form-control"
-                                        value="{{ old('email') }}" required>
+                                        value="{{ old('email', $perfil->email) }}" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="">Facebook</label>
-                                    <input type="url" name="facebook_link" class="form-control" value="{{ old('facebook_link') }}" required>
+                                    <input type="url" name="facebook_link" class="form-control" value="{{ old('facebook_link', $perfil->facebook_link) }}" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="">Instagram</label>
-                                    <input type="url" name="instagram_link" class="form-control" value="{{ old('instagram_link') }}" required>
+                                    <input type="url" name="instagram_link" class="form-control" value="{{ old('instagram_link', $perfil->instagram_link) }}" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="">You Tube</label>
-                                    <input type="url" name="youtube_link" class="form-control" value="{{ old('youtube_link') }}" required>
+                                    <input type="url" name="youtube_link" class="form-control" value="{{ old('youtube_link', $perfil->youtube_link) }}" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="">X</label>
-                                    <input type="url" name="x_link" class="form-control" value="{{ old('x_link') }}" required>
+                                    <input type="url" name="x_link" class="form-control" value="{{ old('x_link', $perfil->x_link) }}" required>
                                 </div>
                                 <div class="row">
                                     <div class="form-group col-12">
                                         <label for="">Descrição</label>
-                                        <textarea type="text" name="descricao" class="summernote"></textarea>
+                                        <textarea type="text" name="descricao" class="summernote">{{ $perfil->descricao }}</textarea>
                                     </div>
                                 </div>
                                 <button type="submit" class="btn btn-primary">Salvar</button>
