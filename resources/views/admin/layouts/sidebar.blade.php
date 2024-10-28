@@ -15,7 +15,7 @@
                     <li class="{{ activesidebar(['slider.*']) }}"><a class="nav-link" href="{{ route('slider.index') }}">Slide destaque</a></li>
                 </ul>
             </li>
-            <li class="menu-header">Starter</li>
+            <li class="menu-header">Categorias</li>
             <li class="dropdown {{ activesidebar([
             'categoria.*',
             'subcategoria.*',
@@ -29,14 +29,23 @@
                     <li class="{{ activesidebar(['categoria-segmento.*']) }}"><a class="nav-link" href="{{ route('categoria-segmento.index') }}">Segmento</a></li>
                 </ul>
             </li>
+            <li class="menu-header">Produtos</li>
             <li class="dropdown {{ activesidebar([
             'marcas.*'
             ]) }}">
-                    <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i>
-                        <span>Gerencie Produtos</span></a>
+                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i><span>Gerencie Produtos</span></a>
+                <ul class="dropdown-menu">
+                    <li class="{{ activesidebar(['marcas.*']) }}"><a class="nav-link" href="{{ route('marcas.index') }}">Marcas</a></li>
+                </ul>
+            </li>
+            <li class="menu-header">Lojas</li>
+            <li class="dropdown {{ activesidebar([
+                'vendedor-perfil.*'
+                ]) }}">
+                    <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i><span>Vendedores</span></a>
                     <ul class="dropdown-menu">
-                        <li class="{{ activesidebar(['marcas.*']) }}"><a class="nav-link" href="{{ route('marcas.index') }}">Marcas</a></li>
-                     </ul>
+                        <li class="{{ activesidebar(['vendedor-perfil.*']) }}"><a class="nav-link" href="{{ route('vendedor-perfil.index') }}">Perfil do Vendedor</a></li>
+                    </ul>
                 </li>
             <li>
                 <a class="nav-link" href="blank.html"><i class="far fa-square"></i> <span>Blank Page</span></a>
