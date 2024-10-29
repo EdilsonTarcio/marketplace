@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('livro_preco', function (Blueprint $table) {
             $table->id();
-            $table->integer('id_vendedor')->references('id')->on('vendedores');
-            $table->bigInteger('id_usuario_cricao')->references('id')->on('users');
-            $table->bigInteger('id_produto')->references('id')->on('produto');
+            $table->foreignId('id_vendedor')->constrained('vendedores');
+            $table->foreignId('id_usuario_cricao')->constrained('users');
+            $table->foreignId('id_produto')->constrained('produtos');
             $table->double('valor');
             $table->double('valor_oferta')->nullable();
             $table->timestamp('inicio_oferta')->nullable();

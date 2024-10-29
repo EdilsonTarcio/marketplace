@@ -17,12 +17,12 @@ return new class extends Migration
             $table->string('nome');
             $table->string('slug');
             $table->text('capa');
-            $table->bigInteger('id_vendedor')->references('id')->on('vendedores');
-            $table->bigInteger('id_usuario_cricao')->references('id')->on('users');
-            $table->bigInteger('id_categoria')->references('id')->on('categorias');
+            $table->foreignId('id_vendedor')->constrained('vendedores');
+            $table->foreignId('id_usuario_cricao')->constrained('users');
+            $table->foreignId('id_categoria')->constrained('categorias');
             $table->bigInteger('id_sub_categoria')->default(0);
             $table->bigInteger('id_segmento')->default(0);
-            $table->bigInteger('id_marca')->references('id')->on('marcas');
+            $table->foreignId('id_marca')->constrained('marcas');
             $table->string('fabricante')->nullable();
             $table->string('cor')->nullable();
             $table->text('descricao_curta');

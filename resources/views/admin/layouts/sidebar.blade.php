@@ -21,7 +21,7 @@
             'subcategoria.*',
             'categoria-segmento.*'
             ]) }}">
-                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i>
+                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas ion-pricetags"></i>
                     <span>Gerencie Categorias</span></a>
                 <ul class="dropdown-menu">
                     <li class="{{ activesidebar(['categoria.*']) }}"><a class="nav-link" href="{{ route('categoria.index') }}">Categorias</a></li>
