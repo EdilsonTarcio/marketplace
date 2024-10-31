@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Events\NovoCliente;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
@@ -38,8 +39,12 @@ class RegisteredUserController extends Controller
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
+            'username' => $request->email,
             'password' => Hash::make($request->password),
         ]);
+
+        //Dispara evento para cadastro de novo cliente
+        NovoCliente::dispatch($user);
 
         event(new Registered($user));
 
