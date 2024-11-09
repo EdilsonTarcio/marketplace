@@ -19,9 +19,6 @@ return new class extends Migration
             $table->text('capa');
             $table->foreignId('id_vendedor')->constrained('vendedores');
             $table->foreignId('id_usuario_cricao')->constrained('users');
-            $table->foreignId('id_categoria')->constrained('categorias');
-            $table->bigInteger('id_sub_categoria')->default(0);
-            $table->bigInteger('id_segmento')->default(0);
             $table->foreignId('id_marca')->constrained('marcas');
             $table->string('fabricante')->nullable();
             $table->string('cor')->nullable();
