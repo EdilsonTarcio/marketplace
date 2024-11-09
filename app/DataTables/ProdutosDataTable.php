@@ -2,7 +2,7 @@
 
 namespace App\DataTables;
 
-use App\Models\SubCategoria;
+use App\Models\Produto;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
@@ -10,7 +10,7 @@ use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Services\DataTable;
 
-class SubCategoriaDataTable extends DataTable
+class ProdutosDataTable extends DataTable
 {
     /**
      * Build the DataTable class.
@@ -21,13 +21,22 @@ class SubCategoriaDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
             ->addColumn('action', function($query){
-                $edit = "<a href='".route('subcategoria.edit', $query->id)."' class='btn btn-primary mr-2'><i class='far fa-edit'></i></a>";
-                $delete = "<a href='".route('subcategoria.destroy', $query->id)."' class='btn btn-danger delete-item'><i class='far fa-trash-alt'></i></a>";
+                $edit = "<a href='".route('marcas.edit', $query->id)."' class='btn btn-primary mr-2'><i class='far fa-edit'></i></a>";
+                $delete = "<a href='".route('marcas.destroy', $query->id)."' class='btn btn-danger delete-item'><i class='far fa-trash-alt'></i></a>";
                                                                                             //class delete-item responsavél para abrir o modal
                 return $edit.$delete;
             })
-            ->addColumn('categoria', function($query){
-                return  "<i class='".$query->categoria->icon."' style='font-size:25px;'></i>".'  '.$query->categoria->name;
+            ->addColumn('logo', function($query){
+
+                $logo = "<img src='".asset($query->logo)."' class='img-thumbnail' width='100' alt='Logo Marca'>";
+
+                return $logo;
+            })
+            ->addColumn('destacada', function($query){
+                $sim = "<button class='btn btn-success'>Sim</button>";
+                $nao = "<button class='btn btn-danger'>Não</button>";
+
+                return $query->destacada == 1 ? $sim : $nao;
             })
             ->addColumn('status', function($query){
                 if($query->status == 1){
@@ -43,14 +52,14 @@ class SubCategoriaDataTable extends DataTable
                 }
                 return $botao;
             })
-            ->rawColumns(['categoria', 'action', 'name', 'status'])
+            ->rawColumns(['logo', 'action', 'destacada', 'name', 'status'])
             ->setRowId('id');
     }
 
     /**
      * Get the query source of dataTable.
      */
-    public function query(SubCategoria $model): QueryBuilder
+    public function query(Produto $model): QueryBuilder
     {
         return $model->newQuery();
     }
@@ -88,8 +97,9 @@ class SubCategoriaDataTable extends DataTable
         return [
 
             Column::make('id')->title('Código'),
-            Column::make('categoria')->title('Categoria'),
-            Column::make('name')->title('Subcategoria'),
+            Column::make('logo')->title('Logo'),
+            Column::make('name')->title('Nome'),
+            Column::make('destacada')->title('Destacada')->addClass('text-center'),
             Column::make('slug')->title('Descrição'),
             Column::make('status')->addClass('text-center')->title('Situação'),
             Column::computed('action')->title('Acões')
@@ -105,6 +115,6 @@ class SubCategoriaDataTable extends DataTable
      */
     protected function filename(): string
     {
-        return 'Subcategoria_' . date('YmdHis');
+        return 'Produtos_' . date('YmdHis');
     }
 }

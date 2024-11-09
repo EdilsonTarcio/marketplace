@@ -31,9 +31,13 @@
             </li>
             <li class="menu-header">Produtos</li>
             <li class="dropdown {{ activesidebar([
-            'marcas.*'
+            'marcas.*',
+            'produtos.*'
             ]) }}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i><span>Gerencie Produtos</span></a>
+                <ul class="dropdown-menu">
+                    <li class="{{ activesidebar(['produtos.*']) }}"><a class="nav-link" href="{{ route('produtos.index') }}">Produtos</a></li>
+                </ul>
                 <ul class="dropdown-menu">
                     <li class="{{ activesidebar(['marcas.*']) }}"><a class="nav-link" href="{{ route('marcas.index') }}">Marcas</a></li>
                 </ul>

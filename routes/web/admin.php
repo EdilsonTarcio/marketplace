@@ -4,6 +4,7 @@ use App\Http\Controllers\Backend\AdminPerfilVendedorController;
 use App\Http\Controllers\Backend\CategoriaController;
 use App\Http\Controllers\Backend\CategoriaSegmentoController;
 use App\Http\Controllers\Backend\MarcaController;
+use App\Http\Controllers\Backend\ProdutoController;
 use App\Http\Controllers\Backend\ProfileController;
 use App\Http\Controllers\Backend\SlideController;
 use App\Http\Controllers\Backend\SubCategoriaController;
@@ -35,6 +36,7 @@ Route::resource('admin/subcategoria', SubCategoriaController::class)->middleware
 Route::put('categoria-segmento/atualiza-status', [CategoriaSegmentoController::class, 'atualizaStatus'])->name('atualiza.status.categoria-segmento');
 Route::resource('admin/categoria-segmento', CategoriaSegmentoController::class)->middleware(['auth', 'admin']);
 Route::get('get-subcategorias', [CategoriaSegmentoController::class, 'getSubcategorias'])->name('get-subcategorias');
+Route::get('get-segmentos', [CategoriaSegmentoController::class, 'getSegmento'])->name('get-segmento');
 
 //Rotas de marcas
 Route::put('marcas/atualiza-status', [MarcaController::class, 'atualizaStatus'])->name('atualiza.status.marca');
@@ -43,3 +45,7 @@ Route::resource('admin/marcas', MarcaController::class)->middleware(['auth', 'ad
 //Rotas de Vendedores
 Route::put('vendedor/atualiza-status', [AdminPerfilVendedorController::class, 'atualizaStatus'])->name('atualiza.status.vendedor');
 Route::resource('admin/vendedor-perfil', AdminPerfilVendedorController::class)->middleware(['auth', 'admin']);
+
+//Rotas de Produtos
+Route::put('produto/atualiza-status', [ProdutoController::class, 'atualizaStatus'])->name('atualiza.status.produto');
+Route::resource('admin/produtos', ProdutoController::class)->middleware(['auth', 'admin']);
