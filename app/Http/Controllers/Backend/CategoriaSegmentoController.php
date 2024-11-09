@@ -57,8 +57,14 @@ class CategoriaSegmentoController extends Controller
      */
     public function getSubcategorias(Request $request)
     {
-        $subCategorias = SubCategoria::where(['id_categoria' => $request->id_categoria_master, 'status' => 1])->get();
+        $subCategorias = SubCategoria::where(['id_categoria' => $request->id_categoria_master, 'status' => 1])->orderBy('id')->get();
         return $subCategorias;
+    }
+
+    public function getSegmento(Request $request)
+    {
+        $segmento = CategoriaSegmento::where(['id_sub_categoria' => $request->id_sub_categoria, 'status' => 1])->orderBy('id')->get();
+        return $segmento;
     }
 
     /**

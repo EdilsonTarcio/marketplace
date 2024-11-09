@@ -30,7 +30,7 @@ class CategoriaController extends Controller
         $subCategoria['slug'] = Str::slug($subCategoria['name']);
 
         //salvando slider
-        SubCategoria::create($subCategoria);
+        Categoria::create($subCategoria);
         return redirect()->back()->with('success', 'Categoria Criada!');
     }
 

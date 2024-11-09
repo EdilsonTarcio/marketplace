@@ -21,7 +21,7 @@ var cleaveI = new Cleave('.invoice-input', {
 });
 var cleaveD = new Cleave('.datemask', {
   date: true,
-  datePattern: ['Y', 'm', 'd']
+  datePattern: ['d', 'm', 'Y']
 });
 var cc_last_type;
 var cleaveCC = new Cleave('.creditcard', {
@@ -43,7 +43,7 @@ var cleaveCC = new Cleave('.creditcard', {
       }
       $(".creditcard").removeClass(cc_last_type);
       $(".creditcard").addClass(type);
-      cc_last_type = type;                        
+      cc_last_type = type;
     }
   }
 });
@@ -51,23 +51,23 @@ var cleaveCC = new Cleave('.creditcard', {
 $(".pwstrength").pwstrength();
 
 $('.daterange-cus').daterangepicker({
-  locale: {format: 'YYYY-MM-DD'},
+  locale: {format: 'DD-MM-YYYY'},
   drops: 'down',
   opens: 'right'
 });
 $('.daterange-btn').daterangepicker({
   ranges: {
-    'Today'       : [moment(), moment()],
-    'Yesterday'   : [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-    'Last 7 Days' : [moment().subtract(6, 'days'), moment()],
-    'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-    'This Month'  : [moment().startOf('month'), moment().endOf('month')],
-    'Last Month'  : [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+    'Hoje'       : [moment(), moment()],
+    'Ontem'   : [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+    'Últimos 7 dias' : [moment().subtract(6, 'days'), moment()],
+    'Últimos 30 dias': [moment().subtract(29, 'days'), moment()],
+    'Este mês'  : [moment().startOf('month'), moment().endOf('month')],
+    'Mês passado'  : [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
   },
   startDate: moment().subtract(29, 'days'),
   endDate  : moment()
 }, function (start, end) {
-  $('.daterange-btn span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'))
+  $('.daterange-btn span').html(start.format('D MMMM, YYYY') + ' - ' + end.format('D MMMM, YYYY'))
 });
 
 $(".colorpickerinput").colorpicker({
