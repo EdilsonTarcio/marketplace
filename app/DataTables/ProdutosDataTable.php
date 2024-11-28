@@ -26,11 +26,11 @@ class ProdutosDataTable extends DataTable
                                                                                             //class delete-item responsavél para abrir o modal
                 return $edit.$delete;
             })
-            ->addColumn('logo', function($query){
+            ->addColumn('capa', function($query){
 
-                $logo = "<img src='".asset($query->logo)."' class='img-thumbnail' width='100' alt='Logo Marca'>";
+                $capa = "<img src='".asset($query->capa)."' class='img-thumbnail' width='100' alt='Logo Marca'>";
 
-                return $logo;
+                return $capa;
             })
             ->addColumn('destacada', function($query){
                 $sim = "<button class='btn btn-success'>Sim</button>";
@@ -52,7 +52,7 @@ class ProdutosDataTable extends DataTable
                 }
                 return $botao;
             })
-            ->rawColumns(['logo', 'action', 'destacada', 'name', 'status'])
+            ->rawColumns(['capa', 'action', 'destacada', 'name', 'status'])
             ->setRowId('id');
     }
 
@@ -96,9 +96,9 @@ class ProdutosDataTable extends DataTable
     {
         return [
 
-            Column::make('id')->title('Código'),
-            Column::make('logo')->title('Logo'),
-            Column::make('name')->title('Nome'),
+            Column::make('sku')->title('Código'),
+            Column::make('capa')->title('capa'),
+            Column::make('nome')->title('Nome'),
             Column::make('destacada')->title('Destacada')->addClass('text-center'),
             Column::make('slug')->title('Descrição'),
             Column::make('status')->addClass('text-center')->title('Situação'),

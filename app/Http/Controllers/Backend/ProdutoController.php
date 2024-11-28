@@ -6,10 +6,16 @@ use App\DataTables\ProdutosDataTable;
 use App\Http\Controllers\Controller;
 use App\Models\Categoria;
 use App\Models\Marca;
+use App\Models\Produto;
+use App\Models\Vendedor;
+use App\Traits\UploadImageTrait;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Str;
 
 class ProdutoController extends Controller
 {
+    use UploadImageTrait;
     /**
      * Display a listing of the resource.
      */
@@ -33,7 +39,30 @@ class ProdutoController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
+        $user = Auth::user();
+        $marca = Marca::find($request->marca);
+        $vendedor = Vendedor::where('id_usuario', $user->id)->first();
+        $upCapa = $this->updateImage($request, 'imagemCapa', 'uploads');
+
+        $produto = new Produto();
+        $produto->sku = $request->sku;
+        $produto->nome = $request->nome;
+        $produto->slug = Str::slug($request->nome);
+        $produto->capa = $upCapa;
+        $produto->id_vendedor = $vendedor->id;
+        $produto->id_usuario_cricao = $user->id;
+        $produto->id_marca = $request->marca;
+        $produto->fabricante = $marca->name;
+        $produto->cor = $request->cor;
+        $produto->descricao_curta = $request->descricaoCurta;
+        $produto->descricao_longa = $request->descricaoLonga;
+        $produto->video = $request->video;
+        $produto->codigo_barras = $request->codigo_barra;
+        $produto->save();
+
+        //falta adicionar as categorias
+
+        return redirect()->route('produtos.index')->with('success', 'Produto cadastrado com sucesso!');
     }
 
     /**
