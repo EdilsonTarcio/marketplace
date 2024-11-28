@@ -43,7 +43,7 @@
                                     </div>
                                     <div class="form-group col-3">
                                         <label>Marca</label>
-                                        <select name="id_segmento" class="form-control segmento-form-marca select2" required>
+                                        <select name="marca" class="form-control segmento-form-marca select2" required>
                                             <option disabled selected>Selecione</option>
                                             @foreach ($data['marcas'] as $marca)
                                                 <option value="{{ $marca->id }}"> {{ $marca->id }} -
